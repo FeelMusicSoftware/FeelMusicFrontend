@@ -1,3 +1,4 @@
+import 'package:feel_music_frontend/Components/BottomNavbar.dart';
 import 'package:feel_music_frontend/Components/MusicBoxWidget.dart';
 import 'package:feel_music_frontend/Components/SearchWidget.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,16 @@ class _PrincipalState extends State<Principal> {
     final Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
+          // appBar: AppBar(
+          //   toolbarHeight: size.height * 0.08,
+          //   backgroundColor: color3,
+          //   elevation: 5,
+          //   title: Text(
+          //     "Playlists",
+          //     style: TextStyle(fontSize: size.height * 0.036,color: color1),
+          //   ),
+          //   centerTitle: true,
+          // ),
           backgroundColor: color4,
           body: SingleChildScrollView(
             child: Container(
@@ -27,6 +38,7 @@ class _PrincipalState extends State<Principal> {
               ),
             ),
           ),
+          // bottomNavigationBar: BottomNavbar(),
         ) );
   }
 }

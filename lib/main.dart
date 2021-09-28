@@ -1,3 +1,4 @@
+import 'package:feel_music_frontend/Components/BottomNavbar.dart';
 import 'package:feel_music_frontend/Pages/Principal.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Principal(),
+      // home: Principal(),
+      home: BottomNavbar(),
     );
   }
 }
