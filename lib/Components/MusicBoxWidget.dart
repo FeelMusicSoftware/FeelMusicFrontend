@@ -15,10 +15,10 @@ class MusicBoxWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: _height,
-          width: _width,
-          margin: EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
-          padding: EdgeInsets.only(right: 10,left: 10,top: 5,bottom: 5),
+          height: _height*0.7,
+          width: _width*0.7,
+          margin: EdgeInsets.only(left: _width*0.01,top: _width*0.014,bottom: _width*0.014,right: _width*0.01),
+          // padding: EdgeInsets.only(right: 10,left: 10,top: 5,bottom: 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15)),
             image:DecorationImage(
@@ -30,8 +30,10 @@ class MusicBoxWidget extends StatelessWidget {
           ),
           // child: Image(image: AssetImage(_image),),
         ),
-        Text(_songName,style: TextStyle(color: color1,fontWeight: FontWeight.bold,fontSize: _height*0.12),),
-        Text(_artistName,style: TextStyle(color: color1.withOpacity(0.5),fontSize: _height*0.08),),
+        // SizedBox(height: 2,),
+        Text(_songName,style: TextStyle(color: color1,fontWeight: FontWeight.bold,fontSize: _height*0.1),),
+        // SizedBox(height: 2,),
+        Text(_artistName,style: TextStyle(color: color1.withOpacity(0.5),fontSize: _height*0.07),),
       ],
     );
   }
