@@ -1,4 +1,5 @@
 import 'package:feel_music_frontend/Components/BottomNavbar.dart';
+import 'package:feel_music_frontend/Pages/LoginPage.dart';
 import 'package:feel_music_frontend/Pages/Principal.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: Principal(),
-      home: BottomNavbar(),
+      // home: BottomNavbar(),
+      home: LoginPage(),
     );
   }
 }

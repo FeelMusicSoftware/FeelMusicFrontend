@@ -15,8 +15,8 @@ class MusicBoxWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: _height*0.7,
-          width: _width*0.7,
+          height: _height*0.6,
+          width: _width*0.8,
           margin: EdgeInsets.only(left: _width*0.01,top: _width*0.014,bottom: _width*0.014,right: _width*0.01),
           // padding: EdgeInsets.only(right: 10,left: 10,top: 5,bottom: 5),
           decoration: BoxDecoration(

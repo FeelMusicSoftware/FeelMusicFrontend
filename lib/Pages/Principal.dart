@@ -1,6 +1,7 @@
 import 'package:feel_music_frontend/Components/BottomNavbar.dart';
 import 'package:feel_music_frontend/Components/MusicBoxWidget.dart';
 import 'package:feel_music_frontend/Components/SearchWidget.dart';
+import 'package:feel_music_frontend/Pages/ListSongPage.dart';
 import 'package:flutter/material.dart';
 
 import '../Colors.dart';
@@ -50,6 +51,12 @@ class _PrincipalState extends State<Principal> {
                               return GestureDetector(
                                 onTap: (){
                                   print(index);
+                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>ListSongPage()));
+                                    // _confirmUser.userName = _username.text;
+                                    // _confirmUser.password = _password.text;
+                                    // BlocProvider.of<NavigationBloc>(context)
+                                    //     .add(ConfirmUserEvent(_confirmUser));
+
                                 },
                                   child: MusicBoxWidget(size.width*0.45, size.height*0.3, _images[index], _songs[index], _artist[index]));
                         }
