@@ -43,21 +43,25 @@ class _FavoritesState extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
     // return Container(color: color3,);
-    return ListView.separated(
-
-        separatorBuilder: (context,index)=>Divider(),
-        itemCount: songs.length,
-        itemBuilder: (context,index)=>ListTile(
-          leading: CircleAvatar(
-            backgroundImage: songs[index].albumArtwork==null?
-            AssetImage("assets/images/img1.jpg"):
-            FileImage(File(songs[index].albumArtwork)),),
-              title: Text(songs[index].title),
-              subtitle: Text(songs[index].artist),
-              onTap: (){
-                currentIndex=index;
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MusicPlayer(changeTrack: changeTrack,songInfo: songs[currentIndex],key: key,)));
-              },),
+    return Scaffold(
+      backgroundColor: color4,
+      body: ListView.separated(
+          separatorBuilder: (context,index)=>Divider(color: color3,),
+          itemCount: songs.length,
+          itemBuilder: (context,index)=>ListTile(
+            // focusColor: color3,
+            // hoverColor: color3,
+            leading: CircleAvatar(
+              backgroundImage: songs[index].albumArtwork==null?
+              AssetImage("assets/images/img1.jpg"):
+              FileImage(File(songs[index].albumArtwork)),),
+                title: Text(songs[index].title,style: TextStyle(color: color1,fontWeight: FontWeight.bold),),
+                subtitle: Text(songs[index].artist,style: TextStyle(color: color1)),
+                onTap: (){
+                  currentIndex=index;
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MusicPlayer(changeTrack: changeTrack,songInfo: songs[currentIndex],key: key,)));
+                },),
+      ),
     );
   }
 }
