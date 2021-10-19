@@ -4,9 +4,37 @@ import 'dart:convert';
 import 'package:feel_music_frontend/Repository/url.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:feel_music_frontend/Repository/url.dart' as api;
+import 'package:feel_music_frontend/Models/LoginRequest.dart';
+import 'package:feel_music_frontend/Repository/Token.dart';
+import 'package:feel_music_frontend/Models/User.dart';
 
 class UserRepository {
 
+  Future<bool> signin(LoginRequest loginRequest)async {
+    try{
+      var url= directionUrl + "user/signin";
+      final response = await http.post(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(loginRequest.toJson())
+      );
+      if(response.statusCode==200){
+        var tok=json.decode(response.body)["token"];
+        print("DoneConfirmUser SIIIIIIIIII");
+        await Token().setToken(tok);
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+    catch(e){
+      print(e);
+      return false;
+    }
+  }
 
   // Future<User> obtainUserProfile(int userId) async {
   //   try {
@@ -77,4 +105,42 @@ class UserRepository {
   //     return null;
   //   }
   // }
+
+
+  Future<bool> signup(User user,LoginRequest loginRequest)async {
+    try{
+      var url= directionUrl + "user/signup";
+      final response = await http.post(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(loginRequest.toJson())
+      );
+      if(response.statusCode==200){
+        var urlSignup=directionUrl + "person";
+        var body=json.decode(response.body);
+        final res = await http.post(urlSignup,
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Authorization':body["token"],
+            },
+            body: jsonEncode(user.toJson())
+        );
+        if(res.statusCode==200){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else{
+        return false;
+      }
+    }
+    catch(e){
+      print(e);
+      return false;
+    }
+  }
+
 }
