@@ -11,7 +11,7 @@ import 'package:feel_music_frontend/Models/User.dart';
 
 class UserRepository {
 
-  Future<bool> signin(LoginRequest loginRequest)async {
+  Future<bool> signIn(LoginRequest loginRequest)async {
     try{
       var url= directionUrl + "user/signin";
       final response = await http.post(url,

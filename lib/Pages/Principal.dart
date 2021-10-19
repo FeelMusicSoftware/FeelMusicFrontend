@@ -5,6 +5,7 @@ import 'package:feel_music_frontend/Pages/ListSongPage.dart';
 import 'package:flutter/material.dart';
 
 import '../Colors.dart';
+import 'Favorites.dart';
 class Principal extends StatefulWidget {
   @override
   _PrincipalState createState() => _PrincipalState();
@@ -51,7 +52,7 @@ class _PrincipalState extends State<Principal> {
                               return GestureDetector(
                                 onTap: (){
                                   print(index);
-                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>ListSongPage()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Favorites()));
                                     // _confirmUser.userName = _username.text;
                                     // _confirmUser.password = _password.text;
                                     // BlocProvider.of<NavigationBloc>(context)

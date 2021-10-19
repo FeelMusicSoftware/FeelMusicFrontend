@@ -1,4 +1,5 @@
 import 'package:feel_music_frontend/Components/BottomNavbar.dart';
+import 'package:feel_music_frontend/Pages/CreateAccountPage.dart';
 import 'package:feel_music_frontend/Pages/Principal.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -51,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Center(
                         child: TextField(
-                          // controller: _password,
+                          controller: _email,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             prefixIcon: Padding(
@@ -84,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Center(
                         child: TextField(
-                          // controller: _password,
+                          controller: _password,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             prefixIcon: Padding(
@@ -107,7 +110,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(height: size.width*0.03,),
-                  Text("¿Olvidaste tu contraseña?",style: TextStyle(color: color5),),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>CreateAccountPage()));
+                    },
+                      child: Text("¿No tienes una cuenta?",style: TextStyle(color: color5),)
+                  ),
                   SizedBox(height: size.width*0.04,),
                   Container(
                     height: size.height * 0.075,
@@ -131,6 +139,29 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                  // SizedBox(height: size.width*0.04,),
+                  // Container(
+                  //   height: size.height * 0.075,
+                  //   width: size.width * 0.8,
+                  //   decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(26.0), color: color12),
+                  //   child: FlatButton(
+                  //     onPressed: () {
+                  //       Navigator.push(context, MaterialPageRoute(builder: (_)=>CreateAccountPage()));
+                  //       // _confirmUser.userName = _username.text;
+                  //       // _confirmUser.password = _password.text;
+                  //       // BlocProvider.of<NavigationBloc>(context)
+                  //       //     .add(ConfirmUserEvent(_confirmUser));
+                  //     },
+                  //     child: Text(
+                  //       "Crear Cuenta",
+                  //       style: TextStyle(
+                  //           color: color1,
+                  //           fontSize: size.height * 0.025,
+                  //           fontWeight: FontWeight.bold),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

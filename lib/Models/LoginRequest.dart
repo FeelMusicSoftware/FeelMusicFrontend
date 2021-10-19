@@ -3,6 +3,7 @@ class LoginRequest{
   String _password;
   String _token;
 
+  //LoginRequest();
   String get email => _email;
 
   set email(String value) {
