@@ -35,7 +35,30 @@ class UserRepository {
       return false;
     }
   }
-
+  Future<bool>createAccount(User user) async{
+    try {
+      String url = directionUrl + "user";
+      // User user1 = User();
+      print("llego al repositorio del addUser");
+      var res = await http.post(url, //ip for virtualized devices
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(user.toJson()));
+      var user2 = jsonDecode(res.body);
+      print(user2);
+      // user1 = User.fromJson(user2);
+      if (res.statusCode == 200) {
+        print("DoneCreateUser");
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      print(error);
+      return false;
+    }
+  }
   // Future<User> obtainUserProfile(int userId) async {
   //   try {
   //

@@ -3,9 +3,11 @@ class User {
   int _idPerson;
   String _name;
   String _firstSurname;
-  String _secondSurName;
+  String _secondSurname;
   String _phone;
+  String _username;
   String _email;
+  String _password;
   User();
 
   String get email => _email;
@@ -20,10 +22,10 @@ class User {
     _phone = value;
   }
 
-  String get secondSurName => _secondSurName;
+  String get secondSurname => _secondSurname;
 
-  set secondSurName(String value) {
-    _secondSurName = value;
+  set secondSurname(String value) {
+    _secondSurname = value;
   }
 
   String get firstSurname => _firstSurname;
@@ -50,13 +52,29 @@ class User {
     _idUser = value;
   }
 
+
+  String get username => _username;
+
+  set username(String value) {
+    _username = value;
+  }
+  String get password => _password;
+
+  set password(String value) {
+    _password = value;
+  }
+
   Map toJson()=>{
-  'idUser': idUser,
-  'idPerson': idPerson,
-  'name': name,
-  'firstSurname': firstSurname,
-  'secondSurname': secondSurName,
-  'phone': phone,
+    'idUser': idUser,
+    'idPerson': idPerson,
+    'name': name,
+    'firstSurname': firstSurname,
+    'secondSurname': secondSurname,
+    'phone': phone,
+    'username':username,
+    'email':email,
+    'password': password
   };
+
 
 }

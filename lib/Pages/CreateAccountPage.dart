@@ -1,4 +1,7 @@
+import 'package:feel_music_frontend/Components/BottomNavbar.dart';
+import 'package:feel_music_frontend/Models/User.dart';
 import 'package:feel_music_frontend/Pages/LoginPage.dart';
+import 'package:feel_music_frontend/Repository/UserRepository.dart';
 import 'package:flutter/material.dart';
 
 import '../Colors.dart';
@@ -14,8 +17,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   TextEditingController _email = TextEditingController();
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
+  User _user=new User();
   // TextEditingController _gender = TextEditingController();
   TextEditingController _cellphone = TextEditingController();
+  UserRepository userRepository=UserRepository();
+  bool confirmUser=false;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -301,8 +307,29 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(26.0), color: color5),
                     child: FlatButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
+                      onPressed: ()  async{
+                        // Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
+                        setState(() {
+                          _user.idUser=1;
+                          _user.idPerson=1;
+                          _user.name=_firstName.text;
+                          _user.firstSurname=_lastName.text;
+                          _user.secondSurname=_secondlastName.text;
+                          _user.phone=_cellphone.text;
+                          _user.username=_username.text;
+                          _user.email=_email.text;
+                          _user.password=_password.text;
+
+                        });
+                        confirmUser=await userRepository.createAccount(_user);
+                        print(_user.email);
+                        print(confirmUser);
+                        if(confirmUser){
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavbar()));
+                        }
+                        else{
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
+                        }
                         // _confirmUser.userName = _username.text;
                         // _confirmUser.password = _password.text;
                         // BlocProvider.of<NavigationBloc>(context)
