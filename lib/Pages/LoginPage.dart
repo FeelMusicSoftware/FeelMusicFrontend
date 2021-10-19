@@ -136,9 +136,13 @@ class _LoginPageState extends State<LoginPage> {
                         _confirm= await userRepository.signIn(userMail);
                         if(_confirm){
                           Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavbar()));
-                        }else{
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
                         }
+                        else{
+                          print("Correo o password erroneo");
+                        }
+                        // else{
+                        //   Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
+                        // }
 
                         // _confirmUser.userName = _username.text;
                         // _confirmUser.password = _password.text;
