@@ -68,26 +68,31 @@ class MusicPlayerState extends State<MusicPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: color4,
       body: Container(
         margin: EdgeInsets.fromLTRB(5, 40, 5, 0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
+              maxRadius: size.width*0.3,
               backgroundImage: widget.songInfo.albumArtwork==null?
               AssetImage("assets/images/img1.jpg"):
               FileImage(File(widget.songInfo.albumArtwork)),),
             Container(
-              margin: EdgeInsets.fromLTRB(0, 10, 0, 7),
-              child: Text(widget.songInfo.title,style: TextStyle(color: color10,fontSize: 16,fontWeight: FontWeight.bold),),
+              margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: Text(widget.songInfo.title,style: TextStyle(color: color1,fontSize: size.width*0.07,fontWeight: FontWeight.bold),),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
-              child: Text(widget.songInfo.artist,style: TextStyle(color: color10,fontSize: 12.5,fontWeight: FontWeight.bold),),
+              child: Text(widget.songInfo.artist,style: TextStyle(color: color10,fontSize: size.width*0.04,fontWeight: FontWeight.bold),),
             ),
+            SizedBox(height: size.width*0.15,),
             Slider(
-                inactiveColor: Colors.black12,
-                activeColor: Colors.black,
+                inactiveColor: Colors.white12,
+                activeColor: Colors.white,
                 min: minimunValue,
                 max: maximunValue,
                 value: currentValue,
@@ -102,8 +107,8 @@ class MusicPlayerState extends State<MusicPlayer> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(currentTime,style: TextStyle(color: color10,fontSize: 12.5,fontWeight: FontWeight.bold),),
-                  Text(endTime,style: TextStyle(color: color10,fontSize: 12.5,fontWeight: FontWeight.bold),),
+                  Text(currentTime,style: TextStyle(color: color10,fontSize: size.width*0.04,fontWeight: FontWeight.bold),),
+                  Text(endTime,style: TextStyle(color: color10,fontSize: size.width*0.04,fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
@@ -113,13 +118,13 @@ class MusicPlayerState extends State<MusicPlayer> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    child: Icon(Icons.skip_previous,color: color2,size: 55,),behavior: HitTestBehavior.translucent,
+                    child: Icon(Icons.skip_previous,color: color1,size: size.width*0.18,),behavior: HitTestBehavior.translucent,
                     onTap: (){
                       widget.changeTrack(false);
                     },
                   ),
                   GestureDetector(
-                    child: Icon(isPlaying?Icons.pause_circle_filled:Icons.play_circle_fill,color: color2,size: 75,),behavior: HitTestBehavior.translucent,
+                    child: Icon(isPlaying?Icons.pause_circle_filled:Icons.play_circle_fill,color: color1,size: size.width*0.2,),behavior: HitTestBehavior.translucent,
                     onTap: (){
                       // print("reconoce");
                       // player.pause();
@@ -127,7 +132,7 @@ class MusicPlayerState extends State<MusicPlayer> {
                     },
                   ),
                   GestureDetector(
-                    child: Icon(Icons.skip_next,color: color2,size: 55,),behavior: HitTestBehavior.translucent,
+                    child: Icon(Icons.skip_next,color: color1,size: size.width*0.18,),behavior: HitTestBehavior.translucent,
                     onTap: (){
                       widget.changeTrack(true);
                     },
