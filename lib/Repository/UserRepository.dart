@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:feel_music_frontend/Models/UserMail.dart';
 import 'package:feel_music_frontend/Repository/url.dart';
 
 import 'package:http/http.dart' as http;
@@ -11,14 +12,15 @@ import 'package:feel_music_frontend/Models/User.dart';
 
 class UserRepository {
 
-  Future<bool> signIn(LoginRequest loginRequest)async {
+  Future<bool> signIn(UserMail userMail )async {
     try{
       var url= directionUrl + "user/signin";
+      print("entro a repo de sigin");
       final response = await http.post(url,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(loginRequest.toJson())
+          body: jsonEncode(userMail.toJson())
       );
       if(response.statusCode==200){
         var tok=json.decode(response.body)["token"];

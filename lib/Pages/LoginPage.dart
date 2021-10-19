@@ -1,6 +1,8 @@
 import 'package:feel_music_frontend/Components/BottomNavbar.dart';
+import 'package:feel_music_frontend/Models/UserMail.dart';
 import 'package:feel_music_frontend/Pages/CreateAccountPage.dart';
 import 'package:feel_music_frontend/Pages/Principal.dart';
+import 'package:feel_music_frontend/Repository/UserRepository.dart';
 import 'package:flutter/material.dart';
 
 import '../Colors.dart';
@@ -12,6 +14,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
+  UserMail userMail=UserMail();
+  bool _confirm=false;
+  UserRepository userRepository=new UserRepository();
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -123,8 +128,18 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(26.0), color: color5),
                     child: FlatButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavbar()));
+                      onPressed: ()async {
+                        setState(() {
+                          userMail.email=_email.text;
+                          userMail.password=_password.text;
+                        });
+                        _confirm= await userRepository.signIn(userMail);
+                        if(_confirm){
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavbar()));
+                        }else{
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage()));
+                        }
+
                         // _confirmUser.userName = _username.text;
                         // _confirmUser.password = _password.text;
                         // BlocProvider.of<NavigationBloc>(context)
