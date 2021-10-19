@@ -1,3 +1,5 @@
 import 'package:flutter/material.dart';
 
-class UserModel{};
+class UserModel{
+  int _userId;
+}
